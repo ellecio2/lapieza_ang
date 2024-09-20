@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DiscountSectionComponent } from './discount-section.component';
+import { ItemsBannerComponent } from './items-banner.component';
 
-describe('DiscountSectionComponent', () => {
-  let component: DiscountSectionComponent;
-  let fixture: ComponentFixture<DiscountSectionComponent>;
+describe('ItemsBannerComponent', () => {
+  let component: ItemsBannerComponent;
+  let fixture: ComponentFixture<ItemsBannerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DiscountSectionComponent]
+      imports: [ItemsBannerComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DiscountSectionComponent);
+    fixture = TestBed.createComponent(ItemsBannerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
