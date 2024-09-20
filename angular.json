@@ -89,7 +89,7 @@
                             "src/styles.css"
                         ],
                         "scripts": [
-                            "node_modules/jquery/dist/jquery.min.js",
+
                             "src/assets/js/jquery-3.7.1.min.js",
                             "src/assets/js/phosphor-icon.js",
                             "src/assets/js/boostrap.bundle.min.js",

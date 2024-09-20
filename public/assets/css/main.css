@@ -8386,6 +8386,9 @@ input:focus-visible {
         visibility: visible;
         opacity: 1;
     }
+    .nav-menu--desktop {
+        display: flex;
+    }
 }
 
 @media screen and (max-width: 767px) {
