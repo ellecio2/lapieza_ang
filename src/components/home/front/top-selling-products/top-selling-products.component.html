@@ -35,21 +35,23 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <div class="top-selling-product-slider arrow-style-two">
-                            <div>
+                        <div class="top-selling-product-slider arrow-style-two" *ngIf="bestSeller && bestSeller.length > 0; else noDataTemplate">
+
+
+                          <div *ngFor="let product of bestSeller; let i = index">
                                 <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                                    <a href="product-details-two.php" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                                    <a href="product-details-two.php" class="product-card__thumb flex-center rounded-8 bg-white-white position-relative">
                                         <span class="product-card__badge bg-main-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Vendido </span>
-                                        <img src="assets/images/thumbs/product-two-img7.png" alt="" class="w-auto max-w-unset">
+                                      <img [src]="product.thumbnail_image" [alt]="product.name" class="product-thumbnail"/>
                                     </a>
                                     <div class="product-card__content mt-16">
                                         <div class="flex-align gap-6">
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                            <span class="text-xs fw-medium text-gray-500" *ngIf="product.rating > 0">{{ product.rating }}</span>
                                             <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
                                             <span class="text-xs fw-medium text-gray-500">(17k)</span>
                                         </div>
                                         <h6 class="title text-lg fw-semibold mt-12 mb-8">
-                                            <a href="product-details-two.php" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                                            <a [href]="product.links.details" target="_blank" class="link text-line-2" tabindex="0">{{ product.name }}</a>
                                         </h6>
                                         <div class="flex-align gap-4">
                                             <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
@@ -59,12 +61,15 @@
                                             <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
                                                 <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: 35%"></div>
                                             </div>
-                                            <span class="text-gray-900 text-xs fw-medium mt-8">Vendido: 18/35</span>
+                                            <span class="text-gray-900 text-xs fw-medium mt-8">Vendido: {{ product.sales }}/{{ product.stock }}</span>
                                         </div>
 
                                         <div class="product-card__price my-20">
-                                            <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
-                                            <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">c/u</span> </span>
+                                          <ng-container *ngIf="product.has_discount">
+                                            <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> ${{ product.stroked_price }}</span>
+                                          </ng-container>
+
+                                            <span class="text-heading text-md fw-semibold ">${{ product.main_price }} <span class="text-gray-500 fw-normal">c/u</span> </span>
                                         </div>
 
                                         <a href="cart.php" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
@@ -73,155 +78,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                                    <a href="product-details-two.php" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Venta 50% </span>
-                                        <img src="assets/images/thumbs/product-two-img8.png" alt="" class="w-auto max-w-unset">
-                                    </a>
-                                    <div class="product-card__content mt-16">
-                                        <div class="flex-align gap-6">
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                            <span class="text-xs fw-medium text-gray-500">(17k)</span>
-                                        </div>
-                                        <h6 class="title text-lg fw-semibold mt-12 mb-8">
-                                            <a href="product-details-two.php" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
-                                        </h6>
-                                        <div class="flex-align gap-4">
-                                            <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                            <span class="text-gray-500 text-xs">Tienda Lucky Supermarket</span>
-                                        </div>
-                                        <div class="mt-8">
-                                            <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
-                                                <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: 35%"></div>
-                                            </div>
-                                            <span class="text-gray-900 text-xs fw-medium mt-8">Vendido: 18/35</span>
-                                        </div>
 
-                                        <div class="product-card__price my-20">
-                                            <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
-                                            <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">c/u</span> </span>
-                                        </div>
 
-                                        <a href="cart.php" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
-                                            Agregar al Carrito <i class="ph ph-shopping-cart"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                                    <a href="product-details-two.php" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Nuevo </span>
-                                        <img src="assets/images/thumbs/product-two-img9.png" alt="" class="w-auto max-w-unset">
-                                    </a>
-                                    <div class="product-card__content mt-16">
-                                        <div class="flex-align gap-6">
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                            <span class="text-xs fw-medium text-gray-500">(17k)</span>
-                                        </div>
-                                        <h6 class="title text-lg fw-semibold mt-12 mb-8">
-                                            <a href="product-details-two.php" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
-                                        </h6>
-                                        <div class="flex-align gap-4">
-                                            <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                            <span class="text-gray-500 text-xs">Tienda Lucky Supermarket</span>
-                                        </div>
-                                        <div class="mt-8">
-                                            <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
-                                                <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: 35%"></div>
-                                            </div>
-                                            <span class="text-gray-900 text-xs fw-medium mt-8">Vendido: 18/35</span>
-                                        </div>
 
-                                        <div class="product-card__price my-20">
-                                            <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
-                                            <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">c/u</span> </span>
-                                        </div>
 
-                                        <a href="cart.php" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
-                                            Agregar al Carrito <i class="ph ph-shopping-cart"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                                    <a href="product-details-two.php" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Mejor Vendido</span>
-                                        <img src="assets/images/thumbs/product-two-img10.png" alt="" class="w-auto max-w-unset">
-                                    </a>
-                                    <div class="product-card__content mt-16">
-                                        <div class="flex-align gap-6">
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                            <span class="text-xs fw-medium text-gray-500">(17k)</span>
-                                        </div>
-                                        <h6 class="title text-lg fw-semibold mt-12 mb-8">
-                                            <a href="product-details-two.php" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
-                                        </h6>
-                                        <div class="flex-align gap-4">
-                                            <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                            <span class="text-gray-500 text-xs">Tienda Lucky Supermarket</span>
-                                        </div>
-                                        <div class="mt-8">
-                                            <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
-                                                <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: 35%"></div>
-                                            </div>
-                                            <span class="text-gray-900 text-xs fw-medium mt-8">Vendido: 18/35</span>
-                                        </div>
-
-                                        <div class="product-card__price my-20">
-                                            <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
-                                            <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">c/u</span> </span>
-                                        </div>
-
-                                        <a href="cart.php" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
-                                            Agregar al Carrito <i class="ph ph-shopping-cart"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                                    <a href="product-details-two.php" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
-                                        <span class="product-card__badge bg-main-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Mejor Vendido </span>
-                                        <img src="assets/images/thumbs/product-two-img8.png" alt="" class="w-auto max-w-unset">
-                                    </a>
-                                    <div class="product-card__content mt-16">
-                                        <div class="flex-align gap-6">
-                                            <span class="text-xs fw-medium text-gray-500">4.8</span>
-                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-                                            <span class="text-xs fw-medium text-gray-500">(17k)</span>
-                                        </div>
-                                        <h6 class="title text-lg fw-semibold mt-12 mb-8">
-                                            <a href="product-details-two.php" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
-                                        </h6>
-                                        <div class="flex-align gap-4">
-                                            <span class="text-tertiary-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-                                            <span class="text-gray-500 text-xs">Tienda Lucky Supermarket</span>
-                                        </div>
-                                        <div class="mt-8">
-                                            <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
-                                                <div class="progress-bar bg-tertiary-600 rounded-pill" style="width: 35%"></div>
-                                            </div>
-                                            <span class="text-gray-900 text-xs fw-medium mt-8">Vendido: 18/35</span>
-                                        </div>
-
-                                        <div class="product-card__price my-20">
-                                            <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
-                                            <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">c/u</span> </span>
-                                        </div>
-
-                                        <a href="cart.php" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
-                                            Agregar al Carrito <i class="ph ph-shopping-cart"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
+                      <ng-template #noDataTemplate>
+                        <p>No best-selling products available at the moment.</p>
+                      </ng-template>
                     </div>
                 </div>
             </div>

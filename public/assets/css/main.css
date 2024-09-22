@@ -92,6 +92,7 @@
     --bg-color-one: #F3FAF2;
     --bg-color-two: #FFFBF4;
     --bg-color-three: #F1F1F1;
+    --bg-white-white: #FFF;
     --neutral: #121535;
     --translate-x-middle: translateX(-50%);
     --translate-y-middle: translateY(-50%);
@@ -4553,6 +4554,25 @@ input:focus-visible {
     width: 3.5rem !important;
 }
 
+.bradius10{
+    border-radius: 12px !important;
+}
+
+.bordeloging{
+    border: 1px solid lightgray !important;
+    border-radius: 12px !important;
+    padding: 4% !important;
+}
+
+.vl {
+    border-left: 1px solid #003b73;
+    height: 500px;
+    position: absolute;
+    left: 50%;
+    margin-left: -3px;
+    top: 0;
+  }
+
 .w-60 {
     width: 3.75rem !important;
 }
@@ -5235,6 +5255,10 @@ input:focus-visible {
 
 .text-body {
     color: hsl(var(--body-color)) !important;
+}
+
+.text-lapieza {
+    color: #003b73 !important;
 }
 
 .bannerheight {
@@ -6590,6 +6614,10 @@ input:focus-visible {
 
 .bg-gray-500 {
     background-color: var(--gray-500) !important;
+}
+
+.bg-white-white {
+    background-color: var(--bg-white-white) !important;
 }
 
 .bg-gray-600 {
@@ -9349,6 +9377,8 @@ input:focus-visible {
     height: 232px;
     width: 100%;
     transition: 0s !important;
+    border: 1px solid lightgray;
+    border-radius: 20px !important;
 }
 
 .product-card__thumb img {
